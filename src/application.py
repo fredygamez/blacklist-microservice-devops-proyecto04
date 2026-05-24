@@ -1,3 +1,6 @@
+import newrelic.agent
+newrelic.agent.initialize()
+
 import os
 from datetime import datetime
 from flask import Flask, request, jsonify
