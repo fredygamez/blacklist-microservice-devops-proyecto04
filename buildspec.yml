@@ -68,13 +68,13 @@ phases:
   # FASE 4: post_build
   # Sube la imagen etiquetada a ECR. Esta imagen es el artefacto final del CI.
   # ---------------------------------------------------------------------------
-  post_build:
-    commands:
-      - echo "==> [post_build] Subiendo imagen a Amazon ECR..."
-      - "docker push ${ECR_REPO_URI}:${IMAGE_TAG}"
-      - echo "==> [post_build] Imagen publicada exitosamente en ECR."
-      - echo "==> [post_build] URI del artefacto"
-      - echo "==> [post_build] Build de integracion continua completado."
+#  post_build:
+#    commands:
+#      - echo "==> [post_build] Subiendo imagen a Amazon ECR..."
+#      - "docker push ${ECR_REPO_URI}:${IMAGE_TAG}"
+#      - echo "==> [post_build] Imagen publicada exitosamente en ECR."
+#      - echo "==> [post_build] URI del artefacto"
+#      - echo "==> [post_build] Build de integracion continua completado."
       # -------------------------------------------------------------------
       #  NUEVO PARA EL ESQUEMA FARGATE BLUE/GREEN (PROYECTO 3)
       # -------------------------------------------------------------------
@@ -86,11 +86,25 @@ phases:
 # Permite a CodePipeline transferir contenido del repositorio
 # entre etapas del pipeline. Requerido para que el pipeline funcione.
 # -----------------------------------------------------------------------------
-artifacts:
-  files:
-    - imagedefinitions.json
+#artifacts:
+#  files:
+#    - imagedefinitions.json
 #    - '**/*'
 # Exportamos estos 3 nuevos archivos para que vayan al Deploy
 #    - imageDetail.json
 #    - appspec.json
 #    - taskdef.json
+
+post_build:
+    commands:
+      - echo "==> [post_build] Subiendo imagen a Amazon ECR..."
+      - "docker push ${ECR_REPO_URI}:${IMAGE_TAG}"
+      - echo "==> [post_build] Generando el archivo imagedefinitions.json en la raiz exacta..."
+      # Forzamos la ruta absoluta usando la variable nativa $CODEBUILD_SRC_DIR
+      - printf '[{"name":"blacklist-container-proyecto04","imageUri":"%s"}]' "$ECR_REPO_URI:$IMAGE_TAG" > "$CODEBUILD_SRC_DIR/imagedefinitions.json"
+      - echo "==> [post_build] Contenido y ubicacion del archivo:"
+      - cat "$CODEBUILD_SRC_DIR/imagedefinitions.json"
+
+artifacts:
+  files:
+    - imagedefinitions.json
