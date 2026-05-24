@@ -25,7 +25,8 @@
         {"name": "JWT_SECRET_KEY", "value": "clave-secreta-estatica-devops-2026"},
         {"name": "NEW_RELIC_APP_NAME", "value": "blacklist-microservice-proyecto04"},
         {"name": "NEW_RELIC_LICENSE_KEY", "value": "73eca2e4de231f3995a19643427656e9627eNRAL"},
-        {"name": "NEW_RELIC_LOG", "value": "stdout"}
+        {"name": "NEW_RELIC_LOG", "value": "stdout"},
+        {"name": "NEW_RELIC_MONITOR_MODE", "value": "true"}
       ],
       "logConfiguration": {
         "logDriver": "awslogs",
