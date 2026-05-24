@@ -107,6 +107,6 @@ post_build:
 
 artifacts:
   files:
-#      - '**/*'
       - imagedefinitions.json
-  base-directory: $CODEBUILD_SRC_DIR    
+#      - '**/*'
+#  base-directory: $CODEBUILD_SRC_DIR    
