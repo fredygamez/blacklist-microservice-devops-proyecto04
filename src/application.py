@@ -229,4 +229,5 @@ except Exception as e:
 # Punto de entrada
 # ---------------------------------------------------------------------------
 if __name__ == '__main__':
-    application.run(host='0.0.0.0', port=8000, debug=True) # '0.0.0.0' le dice a Flask escuchar todas las interfaces de red del contenedor
+    #application.run(host='0.0.0.0', port=5000, debug=True) # '0.0.0.0' le dice a Flask escuchar todas las interfaces de red del contenedor
+    application.run(host='0.0.0.0', port=5000) # '0.0.0.0' le dice a Flask escuchar todas las interfaces de red del contenedor
