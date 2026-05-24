@@ -91,6 +91,6 @@ artifacts:
     - imagedefinitions.json
 #    - '**/*'
 # Exportamos estos 3 nuevos archivos para que vayan al Deploy
-    - imageDetail.json
-    - appspec.json
-    - taskdef.json
+#    - imageDetail.json
+#    - appspec.json
+#    - taskdef.json
