@@ -21,4 +21,5 @@ EXPOSE 5000
 # CMD ["newrelic-admin", "run-program", "python", "src/application.py"]
 
 # Comando para Gunicorn con notación : para objeto WSGI. New Relic necesita Gunicorn para activarse correctamente.
-CMD ["newrelic-admin", "run-program", "gunicorn", "-b", "0.0.0.0:5000", "src.application:application"]
+# CMD ["newrelic-admin", "run-program", "gunicorn", "-b", "0.0.0.0:5000", "src.application:application"]
+CMD ["newrelic-admin", "run-program", "gunicorn", "--chdir", "src", "-b", "0.0.0.0:5000", "--preload", "application:application"]
