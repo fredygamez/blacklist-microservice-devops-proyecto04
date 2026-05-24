@@ -97,13 +97,22 @@ phases:
 
 post_build:
     commands:
+#      - echo "==> [post_build] Subiendo imagen a Amazon ECR..."
+#      - "docker push ${ECR_REPO_URI}:${IMAGE_TAG}"
+#      - echo "==> [post_build] Generando el archivo imagedefinitions.json en la raiz exacta..."
+#      # Forzamos la ruta absoluta usando la variable nativa $CODEBUILD_SRC_DIR
+#      - printf '[{"name":"blacklist-container-proyecto04","imageUri":"%s"}]' "$ECR_REPO_URI:$IMAGE_TAG" > imagedefinitions.json
+#      - echo "==> [post_build] Contenido y ubicacion del archivo:"
+#      - cat imagedefinitions.json
+
+    commands:
       - echo "==> [post_build] Subiendo imagen a Amazon ECR..."
       - "docker push ${ECR_REPO_URI}:${IMAGE_TAG}"
-      - echo "==> [post_build] Generando el archivo imagedefinitions.json en la raiz exacta..."
-      # Forzamos la ruta absoluta usando la variable nativa $CODEBUILD_SRC_DIR
-      - printf '[{"name":"blacklist-container-proyecto04","imageUri":"%s"}]' "$ECR_REPO_URI:$IMAGE_TAG" > imagedefinitions.json
-      - echo "==> [post_build] Contenido y ubicacion del archivo:"
+      - echo "==> [post_build] Imagen publicada exitosamente en ECR."
+      - echo "==> [post_build] Generando imagedefinitions.json..."
+      - echo '[{"name":"blacklist-container-proyecto04","imageUri":"'${ECR_REPO_URI}:${IMAGE_TAG}'"}]' > imagedefinitions.json
       - cat imagedefinitions.json
+      - ls -la imagedefinitions.json
 
 artifacts:
   files:
