@@ -107,4 +107,5 @@ post_build:
 
 artifacts:
   files:
-    - imagedefinitions.json
+#      - '**/*'
+      - imagedefinitions.json
