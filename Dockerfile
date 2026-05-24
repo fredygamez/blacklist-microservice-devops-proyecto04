@@ -13,9 +13,13 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copiando el contenido de folder src local a la carpeta src de contenedor
 COPY src/ ./src/
 
+# Copiando el archivo de configuracion de New Relic 
+COPY newrelic.ini .
+
 # Contenedor usara puerto 5000
 EXPOSE 5000
 
 # Comando que ejecuta la aplicación al iniciar contenedor
 # CMD ["python", "src/application.py"]
+ENV NEW_RELIC_CONFIG_FILE=newrelic.ini
 CMD ["newrelic-admin", "run-program", "python", "src/application.py"]
