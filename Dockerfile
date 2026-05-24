@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY src/ ./src/
 
 # Copiando el archivo de configuracion de New Relic 
-COPY newrelic.ini .
+COPY src/newrelic.ini .
 
 # Contenedor usara puerto 5000
 EXPOSE 5000
