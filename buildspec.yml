@@ -77,7 +77,7 @@ phases:
         - echo '[{"name":"blacklist-container-proyecto04","imageUri":"'${ECR_REPO_URI}:${IMAGE_TAG}'"}]' > imagedefinitions.json
         - cat imagedefinitions.json
 
-  artifacts:
-    files:
-        - '**/*'
+    artifacts:
+      files:
+          - '**/*'
 #      - imagedefinitions.json
