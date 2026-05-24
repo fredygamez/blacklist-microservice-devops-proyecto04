@@ -1,8 +1,8 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:675429486551:task-definition/task-definition-devops-proyecto-03:1",
+  "family": "blacklist-task-proyecto04",
   "containerDefinitions": [
     {
-      "name": "blacklist-container-proyecto-03",
+      "name": "blacklist-container-proyecto04",
       "image": "<IMAGE1_NAME>",
       "cpu": 0,
       "portMappings": [
@@ -10,81 +10,39 @@
           "containerPort": 5000,
           "hostPort": 5000,
           "protocol": "tcp",
-          "name": "blacklist-container-proyecto-03-5000-tcp",
+          "name": "blacklist-container-proyecto04-5000-tcp",
           "appProtocol": "http"
         }
       ],
       "essential": true,
-      "environment": [],
-      "environmentFiles": [],
-      "mountPoints": [],
-      "volumesFrom": [],
-      "ulimits": [],
+      "environment": [
+        {"name": "RDS_HOSTNAME", "value": "blacklist-db.csw5pfcrxb9p.us-east-1.rds.amazonaws.com"},
+        {"name": "RDS_PORT", "value": "5432"},
+        {"name": "RDS_DB_NAME", "value": "blacklist_db"},
+        {"name": "RDS_USERNAME", "value": "postgres"},
+        {"name": "RDS_PASSWORD", "value": "BlacklistDB2026!"},
+        {"name": "STATIC_BEARER_TOKEN", "value": "token-secreto-blacklist-2026"},
+        {"name": "JWT_SECRET_KEY", "value": "clave-secreta-estatica-devops-2026"},
+        {"name": "NEW_RELIC_APP_NAME", "value": "blacklist-microservice-proyecto04"},
+        {"name": "NEW_RELIC_LICENSE_KEY", "value": "73eca2e4de231f3995a19643427656e9627eNRAL"},
+        {"name": "NEW_RELIC_LOG", "value": "stdout"}
+      ],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
-          "awslogs-group": "/ecs/task-definition-devops-proyecto-03",
+          "awslogs-group": "/ecs/blacklist-proyecto04",
           "awslogs-create-group": "true",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
-        },
-        "secretOptions": []
-      },
-      "systemControls": []
+        }
+      }
     }
   ],
-  "family": "task-definition-devops-proyecto-03",
   "executionRoleArn": "arn:aws:iam::675429486551:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
-  "revision": 1,
-  "volumes": [],
-  "status": "ACTIVE",
-  "requiresAttributes": [
-    {
-      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-    },
-    {
-      "name": "ecs.capability.execution-role-awslogs"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.ecr-auth"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
-    },
-    {
-      "name": "ecs.capability.execution-role-ecr-pull"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-    },
-    {
-      "name": "ecs.capability.task-eni"
-    },
-    {
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
-    }
-  ],
-  "placementConstraints": [],
-  "compatibilities": [
-    "EC2",
-    "MANAGED_INSTANCES",
-    "FARGATE"
-  ],
-  "runtimePlatform": {
-    "cpuArchitecture": "X86_64",
-    "operatingSystemFamily": "LINUX"
-  },
   "requiresCompatibilities": [
     "FARGATE"
   ],
-  "cpu": "1024",
-  "memory": "3072",
-  "registeredAt": "2026-05-10T18:45:55.461Z",
-  "registeredBy": "arn:aws:iam::675429486551:user/fredy.ubilogica",
-  "enableFaultInjection": false,
-  "tags": []
+  "cpu": "256",
+  "memory": "512"
 }

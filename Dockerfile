@@ -17,4 +17,5 @@ COPY src/ ./src/
 EXPOSE 5000
 
 # Comando que ejecuta la aplicación al iniciar contenedor
-CMD ["python", "src/application.py"]
+# CMD ["python", "src/application.py"]
+CMD ["newrelic-admin", "run-program", "python", "src/application.py"]
